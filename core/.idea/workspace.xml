@@ -5,7 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef582eb8-c67f-4f08-987c-1c1264301f59" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jpa-basic/core/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/CoreApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/MemberApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/OrderApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/discount/DiscountPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/discount/FixDiscountPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/discount/RateDiscountPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/member/Grade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/member/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/member/MemberRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/member/MemberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/member/MemberServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/member/MemoryMemberRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/order/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/order/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/java/hello/core/order/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/test/java/hello/core/CoreApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/test/java/hello/core/discount/RateDiscountPolicyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/test/java/hello/core/member/MemberServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jpa-basic/core/src/test/java/hello/core/order/OrderServiceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +92,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
