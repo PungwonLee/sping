@@ -18,6 +18,8 @@ public class BeanLifeCycleTest {
 
     @Configuration
     static class LifeCycleConfig{
+//        @Bean(initMethod = "init") // destroyMethod없으면 추론기능으로 close 또는 shutdown이라는 이름의 종료메서드를 찾아 사용한다.
+//        @Bean(initMethod = "init",destroyMethod = "close")
         @Bean
         public NetworkClient networkClient(){
             NetworkClient networkClient = new NetworkClient();
