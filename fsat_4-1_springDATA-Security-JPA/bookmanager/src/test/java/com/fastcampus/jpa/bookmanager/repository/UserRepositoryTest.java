@@ -11,6 +11,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,8 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 @SpringBootTest//스프링 컨텍스트를 로딩해서 테스트하겠다
 class UserRepositoryTest {
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository;@Autowired
+    private UserHistoryRepository userHistoryRepository;
 
     @Test
     void crud() {//create, update, read, delete
@@ -83,14 +85,70 @@ class UserRepositoryTest {
 
     }
 
-    @BeforeEach
-    void init(){
+    @Test
+    void enumTest(){
+    }
 
-        userRepository.save(new User(1L,"martin","martin@fastcampus.com", LocalDateTime.now(),LocalDateTime.now(),null));
-        userRepository.save(new User(2L,"dennis","dennis@fastcampus.com", LocalDateTime.now(),LocalDateTime.now(),null));
-        userRepository.save(new User(3L,"sophia","sophia@naver.com", LocalDateTime.now(),LocalDateTime.now(),null));
-        userRepository.save(new User(4L,"james","james@naver.com", LocalDateTime.now(),LocalDateTime.now(),null));
-        userRepository.save(new User(5L,"martin","martin@another.com", LocalDateTime.now(),LocalDateTime.now(),null));
+    @Test
+    void listenerTest(){
+        User user = new User();
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
+
+        userRepository.save(user);
 
     }
+
+    @Test
+    void prePersistTest(){
+        User user = new User();
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
+        userRepository.save(user);
+
+        System.out.println(userRepository.findById(1L).orElseThrow(RuntimeException::new));
+    }
+
+    @Test
+    void preUpdateTest(){
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
+        userRepository.save(user);
+
+        System.out.println(userRepository.findById(1L).orElseThrow(RuntimeException::new));
+    }
+
+    @Test
+    @Transactional
+    void userHistoryTest(){
+        User user = new User();
+        user.setEmail("martin-new@fastcampus.com");
+        user.setName("martin-new");
+
+        userRepository.save(user);
+        user.setName("martin-new-new");
+
+
+
+        userHistoryRepository.findAll().forEach(System.out::println);
+    }
+
+
+
+
+
+    @BeforeEach
+    void init(){
+        userRepository.save(User.builder().id(1L).name("martin").email("martin@fastcampus.com").build());
+        userRepository.save(User.builder().id(2L).name("dennis").email("dennis@fastcampus.com").build());
+        userRepository.save(User.builder().id(3L).name("sophia").email("sophia@naver.com").build());
+        userRepository.save(User.builder().id(4L).name("james").email("james@naver.com").build());
+        userRepository.save(User.builder().id(5L).name("martin").email("martin@another.com").build());
+//
+
+    }
+
+
 }

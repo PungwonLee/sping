@@ -1,6 +1,12 @@
 package com.fastcampus.jpa.bookmanager.domain;
 
+import com.fastcampus.jpa.bookmanager.domain.listener.Auditable;
+import com.fastcampus.jpa.bookmanager.domain.listener.MyEntityListener;
+import com.fastcampus.jpa.bookmanager.domain.listener.UserEntityListener;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,7 +20,10 @@ import java.util.List;
 @Data
 @Entity
 @Builder
-public class User {
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@EntityListeners(value = {AuditingEntityListener.class, UserEntityListener.class})
+public class User extends BaseEntity  {
     @Id
 //    @GeneratedValue //자동으로 숫자가 증가하게.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +35,21 @@ public class User {
     @NonNull
     private String email;
 
-    private LocalDateTime createdAt;
+    private Gender gender;
 
-    private LocalDateTime updatedAt;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Address> addressList;
+
+//    @PrePersist
+//    public void prePersist(){
+//        this.createdAt=LocalDateTime.now();
+//        this.updatedAt=LocalDateTime.now();
+//    }
+//
+//    @PreUpdate
+//    public void preUpdate(){
+//        this.updatedAt=LocalDateTime.now();
+//
+//    }
 }
