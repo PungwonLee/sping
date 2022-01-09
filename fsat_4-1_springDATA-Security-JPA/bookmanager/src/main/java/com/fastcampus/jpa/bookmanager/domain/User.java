@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,21 +36,14 @@ public class User extends BaseEntity  {
     @NonNull
     private String email;
 
+    @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Address> addressList;
 
-//    @PrePersist
-//    public void prePersist(){
-//        this.createdAt=LocalDateTime.now();
-//        this.updatedAt=LocalDateTime.now();
-//    }
-//
-//    @PreUpdate
-//    public void preUpdate(){
-//        this.updatedAt=LocalDateTime.now();
-//
-//    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id",insertable = false,updatable = false)
+    private List<UserHistory> userHistories=new ArrayList<>();//널포인트 방지
+
 }
