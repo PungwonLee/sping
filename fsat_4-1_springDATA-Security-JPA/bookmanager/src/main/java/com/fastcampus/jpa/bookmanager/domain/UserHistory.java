@@ -20,12 +20,14 @@ public class UserHistory  extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "user_id")
-    private Long userId;
+//    @Column(name = "user_id",updatable = false,insertable = false)
+//    private Long userId;
 
     private String name;
     private String email;
 
+    @ManyToOne
+    private User user;
 
 
 }

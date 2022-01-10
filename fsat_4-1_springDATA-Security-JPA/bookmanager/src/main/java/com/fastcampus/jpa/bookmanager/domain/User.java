@@ -28,7 +28,6 @@ public class User extends BaseEntity  {
     @Id
 //    @GeneratedValue //자동으로 숫자가 증가하게.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @NonNull
@@ -40,10 +39,13 @@ public class User extends BaseEntity  {
     private Gender gender;
 
 
-
-
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",insertable = false,updatable = false)
-    private List<UserHistory> userHistories=new ArrayList<>();//널포인트 방지
+    @ToString.Exclude
+    private List<UserHistory> userHistories=new ArrayList<>();//널포인트 방지,
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
 }
