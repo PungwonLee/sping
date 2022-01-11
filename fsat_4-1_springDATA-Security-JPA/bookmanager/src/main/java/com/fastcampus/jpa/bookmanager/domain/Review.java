@@ -24,8 +24,9 @@ public class Review extends BaseEntity{
 
     private float score;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @ToString.Exclude
+    @JoinColumn(name = "user_id",insertable = false,updatable = false)
     private User user;
 
     @ManyToOne

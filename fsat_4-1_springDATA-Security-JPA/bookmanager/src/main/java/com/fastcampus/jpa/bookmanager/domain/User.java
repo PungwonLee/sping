@@ -45,7 +45,10 @@ public class User extends BaseEntity  {
     private List<UserHistory> userHistories=new ArrayList<>();//널포인트 방지,
 
     @OneToMany
-    @JoinColumn(name = "user_id")
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+    }
 }
