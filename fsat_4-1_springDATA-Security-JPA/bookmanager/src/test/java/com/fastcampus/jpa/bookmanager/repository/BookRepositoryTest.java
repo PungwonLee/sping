@@ -4,15 +4,20 @@ import com.fastcampus.jpa.bookmanager.domain.Book;
 import com.fastcampus.jpa.bookmanager.domain.Publisher;
 import com.fastcampus.jpa.bookmanager.domain.Review;
 import com.fastcampus.jpa.bookmanager.domain.User;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.persister.entity.EntityPersister;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * @author Martin
@@ -28,6 +33,8 @@ public class BookRepositoryTest {
     private ReviewRepository reviewRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private EntityManager em;
 
     @Test
     void bookTest() {
@@ -44,7 +51,6 @@ public class BookRepositoryTest {
     @Test
     @Transactional
     void bookRelationTest() {
-
         User user = userRepository.findByEmail("martin@fastcampus.com");
 
         System.out.println("Review : " + user.getReviews());
@@ -52,52 +58,9 @@ public class BookRepositoryTest {
         System.out.println("Publisher : " + user.getReviews().get(0).getBook().getPublisher());
     }
 
-    @Test
-    void bookCascadeTest() {
-        Book book = new Book();
-        book.setName("JPA 초격차 패키지");
 
-        Publisher publisher = new Publisher();
-        publisher.setName("패스트캠퍼스");
 
-        book.setPublisher(publisher);
-        bookRepository.save(book);
 
-        System.out.println("books : " + bookRepository.findAll());
-        System.out.println("publishers : " + publisherRepository.findAll());
-
-        Book book1 = bookRepository.findById(1L).get();
-        book1.getPublisher().setName("슬로우캠퍼스");
-
-        bookRepository.save(book1);
-
-        System.out.println("publishers : " + publisherRepository.findAll());
-
-        Book book2 = bookRepository.findById(1L).get();
-//        bookRepository.delete(book2);
-//        bookRepository.deleteById(1L);
-
-//        publisherRepository.delete(book2.getPublisher());
-
-        Book book3 = bookRepository.findById(1L).get();
-        book3.setPublisher(null);
-
-        bookRepository.save(book3);
-
-        System.out.println("books : " + bookRepository.findAll());
-        System.out.println("publishers : " + publisherRepository.findAll());
-        System.out.println("book3-publisher : " + bookRepository.findById(1L).get().getPublisher());
-    }
-
-    @Test
-    void bookRemoveCascadeTest() {
-        bookRepository.deleteById(1L);
-
-        System.out.println("books : " + bookRepository.findAll());
-        System.out.println("publishers " + publisherRepository.findAll());
-
-        bookRepository.findAll().forEach(book -> System.out.println(book.getPublisher()));
-    }
 
 
 
@@ -117,7 +80,11 @@ public class BookRepositoryTest {
         review.setUser(user);
         review.setBook(book);
         Review save = reviewRepository.save(review);
-        System.out.println("save.getUser() = " + save.getUser());
+
+
+        user.addReview(save);
+        userRepository.save(user);
+        System.out.println("save.getUser() = " + save.getBook().getReviews());
 
     }
 
@@ -142,7 +109,6 @@ public class BookRepositoryTest {
         userRepository.save(User.builder().id(1L).name("martin").email("martin@fastcampus.com").build());
         givenBookAndReview();
     }
-
 
 
 }
