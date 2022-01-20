@@ -10,44 +10,39 @@ public class Main {
     static int[] tree;
     static int S;
     static int N;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
-        StringBuilder sb= new StringBuilder();
         N = rd.nextInt();
 
         for (S = 1; S < 1000000; S *= 2) ;
         tree = new int[S * 2];
+
         for (int i = 0; i < N; i++) {
-            if (rd.nextInt() == 2) {
-                //맛 , 더할 갯수
+            if (rd.nextInt() == 2) {        //맛 , 더할 갯수
                 updateBU(rd.nextInt(), rd.nextInt());
-            } else {
-                //순위넣고 N순위의 맛은?
-                int x = QueryUD(1, rd.nextInt()) - S + 1;
-
-                sb.append(x+"\n");
-                updateBU(x, -1);
-
+            } else {                        //순위넣고 N순위의 맛은?
+                QueryUD(1, rd.nextInt());
             }
-
         }
         System.out.println(sb);
     }
 
-    static int QueryUD(int v, int queryVal) {
+    static void QueryUD(int v, int queryVal) {
+        tree[v] -= 1;
         if (v >= S) {
-            return v;
+            sb.append(v - S + 1+"\n");
+            return;
         }
         int left = v * 2;
         int right = v * 2 + 1;
         if (tree[left] >= queryVal) {
-            return QueryUD(left, queryVal);
+            QueryUD(left, queryVal);
         } else {
-            return QueryUD(right, queryVal - tree[left]);
+            QueryUD(right, queryVal - tree[left]);
         }
     }
-
     static void updateBU(int idx, int count) {
         int X = S + idx - 1;
         tree[X] += count;
@@ -57,7 +52,6 @@ public class Main {
             X /= 2;
         }
     }
-
 
     static class FastReader {
         BufferedReader br;
