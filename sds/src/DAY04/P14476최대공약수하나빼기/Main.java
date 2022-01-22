@@ -1,4 +1,4 @@
-package DAY04_05.P14476최대공약수하나빼기;
+package DAY04.P14476최대공약수하나빼기;
 
 import java.io.*;
 import java.util.*;

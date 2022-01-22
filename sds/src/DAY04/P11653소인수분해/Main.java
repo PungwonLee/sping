@@ -1,4 +1,4 @@
-package DAY04_05.P11653소인수분해;
+package DAY04.P11653소인수분해;
 
 import java.io.BufferedReader;
 import java.io.IOException;

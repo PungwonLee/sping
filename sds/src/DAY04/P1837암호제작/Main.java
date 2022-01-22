@@ -1,9 +1,8 @@
-package DAY04_05.P1837암호제작;
+package DAY04.P1837암호제작;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 public class Main {

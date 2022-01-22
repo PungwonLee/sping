@@ -1,4 +1,4 @@
-package DAY04_05.P3955캔디분배;
+package DAY04.P3955캔디분배;
 
 import java.io.BufferedReader;
 import java.io.IOException;

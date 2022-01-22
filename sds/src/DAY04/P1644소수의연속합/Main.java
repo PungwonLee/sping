@@ -1,4 +1,4 @@
-package DAY04_05.P2960에라토스테네스의체;
+package DAY04.P1644소수의연속합;
 
 import java.io.*;
 import java.util.*;
@@ -8,28 +8,30 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		FastReader rd = new FastReader();
 		int N = rd.nextInt();
-		int K = rd.nextInt();
 		boolean isNotPrime[] = new boolean[N + 1];
-		int cnt = 0;
+		ArrayList<Integer> primeList = new ArrayList<>();
 		for (int i = 2; i <= N; i++) {
 			if (!isNotPrime[i]) {
-				cnt++;
-				if (cnt == K) {
-					System.out.println(i);
-					return;
-				}
+				primeList.add(i);
 				for (int j = i + i; j <= N; j += i) {
 					if (!isNotPrime[j]) {
 						isNotPrime[j] = true;
-						cnt++;
-						if (cnt == K) {
-							System.out.println(j);
-							return;
-						}
 					}
-
 				}
 			}
+		}
+		int l = 0, r = 0, sum = 0, cnt = 0;
+
+		while (l < primeList.size() && r < primeList.size()) {
+			while (r < primeList.size() && sum < N) {
+				sum += primeList.get(r++);
+				if (sum == N)
+					cnt++;
+			}
+
+			sum -= primeList.get(l++);
+			if (sum == N)
+				cnt++;
 		}
 		System.out.println(cnt);
 	}
