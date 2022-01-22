@@ -55,7 +55,7 @@ public class Main {
         }
 
         int nextInt() {
-            return Integer.parseInt(next());
+                return Integer.parseInt(next());
         }
 
         long nextLong() {
