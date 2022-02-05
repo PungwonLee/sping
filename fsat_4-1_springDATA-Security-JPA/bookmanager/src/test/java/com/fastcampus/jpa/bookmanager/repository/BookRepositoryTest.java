@@ -8,16 +8,14 @@ import com.fastcampus.jpa.bookmanager.domain.User;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.persister.entity.EntityPersister;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 /**
  * @author Martin
@@ -43,7 +41,7 @@ public class BookRepositoryTest {
         book.setAuthorId(1L);
 //        book.setPublisherId(1L);
 
-        bookRepository.save(book);
+
 
         System.out.println(bookRepository.findAll());
     }
