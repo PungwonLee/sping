@@ -13,17 +13,17 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DataJpaTest
+@DataJpaTest //디비 데이타 소스를 H2 디비를 메모리로 사용
 public class SchoolTest {
 
     @Autowired
     private SchoolRepository schoolRepository;
 
-    private SchoolService schoolService;
+    private SchoolService schoolService; //와이어링이 안된다..
     private SchoolTestHelper schoolTestHelper;
     School school;
 
-    @BeforeEach
+    @BeforeEach   // 서비스빈은 시작할때 만들어줘야한다.
     void before(){
         this.schoolRepository.deleteAll();
         this.schoolService = new SchoolService(schoolRepository);
@@ -34,6 +34,8 @@ public class SchoolTest {
     @DisplayName("1. 학교를 생성한다.")
     @Test
     void test_1(){
+
+
         List<School> list = schoolRepository.findAll();
         assertEquals(1, list.size());
         SchoolTestHelper.assertSchool(list.get(0), "테스트 학교", "서울");
